@@ -5,6 +5,7 @@ export const theme = {
 
     surface_primary: '#18181B',
     surface_secondary: '#27272A',
+    surface_secondary_hover: '#3F3F46',
 
     text_primary: '#F4F4F5',
     text_secondary: '#A1A1AA',
