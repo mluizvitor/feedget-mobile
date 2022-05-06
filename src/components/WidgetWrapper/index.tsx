@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactNode, useCallback, useRef, useState } from 'react';
 import { ChatTeardropDots } from 'phosphor-react-native';
 import { TouchableOpacity  } from 'react-native';
 
-import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
 import { Options } from '../Options';
@@ -17,7 +17,11 @@ import { styles } from './styles';
 
 export type FeedbackType = keyof typeof feedbackTypes;
 
-function Widget() {
+interface Props {
+  children?: ReactNode;
+}
+
+function WidgetWrapper({children} : Props) {
   const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null);
   const [feedbackSent, setFeedbackSent] = useState(false);
   
@@ -36,18 +40,36 @@ function Widget() {
     setFeedbackSent(true);
   }
 
+  const renderBackdrop = useCallback(
+    props => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={0}
+        appearsOnIndex={1}
+      />
+    ),
+    []
+  );
+
   return (
     <>
+      {children}
+
+
       <TouchableOpacity style={styles.button}
         onPress={handleOpen}>
         <ChatTeardropDots size={24}
           color={theme.colors.text_on_brand_color} />
       </TouchableOpacity>
-
-      <BottomSheet ref={bottomSheetRef}
+      
+      <BottomSheet
+        ref={bottomSheetRef}
         snapPoints={[1, 280]}
         backgroundStyle={styles.modal}
-        handleIndicatorStyle={styles.indicator}>
+        backdropComponent={renderBackdrop}
+        handleIndicatorStyle={styles.indicator}
+        enablePanDownToClose
+        style={{elevation: 24}}>
 
         {
           feedbackSent
@@ -65,9 +87,7 @@ function Widget() {
                 <Options
                   onFeedbackTypeChanged={setFeedbackType}/>
             )
-
         }
-
 
         <Copyright />
       </BottomSheet>
@@ -76,4 +96,4 @@ function Widget() {
   );
 }
 
-export default gestureHandlerRootHOC(Widget);
+export default gestureHandlerRootHOC(WidgetWrapper);

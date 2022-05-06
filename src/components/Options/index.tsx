@@ -1,8 +1,9 @@
+import { BottomSheetView } from '@gorhom/bottom-sheet';
 import React from 'react';
 import { Text, View } from 'react-native';
 import { feedbackTypes } from '../../utils/feedbackTypes';
 import { Option } from '../Option';
-import { FeedbackType } from '../Widget';
+import { FeedbackType } from '../WidgetWrapper';
 
 import { styles } from './styles';
 
@@ -12,7 +13,7 @@ interface Props {
 
 export function Options({onFeedbackTypeChanged} : Props) {
   return (
-    <View style={styles.container}>
+    <BottomSheetView style={styles.container}>
       <Text style={styles.sheetTitle}>
         {'Deixe seu Feedback'}
       </Text>
@@ -27,6 +28,6 @@ export function Options({onFeedbackTypeChanged} : Props) {
           );
         })}
       </View>
-    </View>
+    </BottomSheetView>
   );
 }

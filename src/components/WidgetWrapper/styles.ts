@@ -13,13 +13,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
 
     position: 'absolute',
-    bottom: 24,
-    right: getBottomSpace() + 24,
+    bottom: getBottomSpace() + 16 + 72,
+    right: 16,
   },
 
   modal: {
     backgroundColor: theme.colors.surface_primary,
     paddingBottom: getBottomSpace() + 16,
+    position: 'absolute',
   },
   indicator: {
     backgroundColor: theme.colors.surface_secondary,

@@ -9,10 +9,11 @@ import { ScreenshotButton } from '../ScreenshotButton';
 import { captureScreen } from 'react-native-view-shot';
 import * as FileSystem from 'expo-file-system';
 
-import { FeedbackType } from '../Widget';
+import { FeedbackType } from '../WidgetWrapper';
 
 import { styles } from './styles';
 import { api } from '../../libs/api';
+import { BottomSheetView } from '@gorhom/bottom-sheet';
 
 interface Props {
   feedbackType: FeedbackType
@@ -72,7 +73,7 @@ export function Form({feedbackType, onFeedbackReset, onFeedbackSent}: Props) {
   }
 
   return (
-    <View style={styles.container}>
+    <BottomSheetView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={onFeedbackReset}>
           <ArrowLeft size={24}
@@ -106,6 +107,6 @@ export function Form({feedbackType, onFeedbackReset, onFeedbackSent}: Props) {
         <Button isLoading={isSendingFeedback}
           onPress={handleSendFeedback}/>
       </View>
-    </View>
+    </BottomSheetView>
   );
 }

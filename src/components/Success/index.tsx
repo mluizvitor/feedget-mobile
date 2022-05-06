@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { Image, Text, TouchableOpacity } from 'react-native';
 
 import { styles } from './styles';
 
 import successImage from '../../assets/success.png';
+import { BottomSheetView } from '@gorhom/bottom-sheet';
 
 interface Props {
   onSendAnotherFeedback: () => void;
@@ -11,7 +12,7 @@ interface Props {
 
 export function Success({onSendAnotherFeedback} : Props) {
   return (
-    <View style={styles.container}>
+    <BottomSheetView style={styles.container}>
       <Image
         style={styles.successImage}
         source={successImage}
@@ -28,6 +29,6 @@ export function Success({onSendAnotherFeedback} : Props) {
         </Text>
       </TouchableOpacity>
 
-    </View>
+    </BottomSheetView>
   );
 }
