@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "feedget-mobile",
+    "name": "Feedget Mobile",
     "slug": "feedget-mobile",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#09090A"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,8 +22,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#8257E5"
+      },
+      "package": "dev.mvitor.feedget"
     },
     "web": {
       "favicon": "./assets/favicon.png"
