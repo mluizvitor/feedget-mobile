@@ -45,11 +45,25 @@ export const styles = StyleSheet.create({
   },
 
   blankBox: {
-    width: '100%',
-    height: 280,
+    width: 312,
     backgroundColor: theme.colors.surface_primary,
     marginBottom: 24,
     borderRadius: 16,
+    minHeight: 200,
+  },
+
+  bugyImage: {
+    width: '100%',
+    marginLeft: 40,
+    height: 200,
+    marginTop: 11,
+  },
+
+  bugyTypeface: {
+    color: theme.colors.text_primary,
+    fontSize: 24,
+    padding: 24,
+    fontFamily: 'GreatVibes_400Regular',
   },
 
   bottomNav: {
@@ -62,4 +76,5 @@ export const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: theme.colors.surface_secondary_hover,
   },
+
 });

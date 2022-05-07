@@ -1,7 +1,10 @@
 import {Circle, List, Square} from 'phosphor-react-native';
 import React, { ReactNode } from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Image, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { theme } from '../../theme';
+
+import bugyImage from '../../assets/bugy/image.png';
+import bugyTypeface from '../../assets/bugy/typeface.png';
 
 import { styles } from './styles';
 
@@ -41,13 +44,30 @@ export function AppItemsPlaceholder({children}: Props) {
         <ScrollView style={styles.scrollView} >
           <View style={styles.contentBox}>
             <Text style={styles.contentBoxText}>
-              {'Experimente enviar um feedback de um bug na aplicação  🐛 '}
+              {'Experimente enviar um feedback de um bug na aplicação 🐛'}
+            </Text>
+          </View>
+
+          <View style={styles.blankBox}>
+            <Image source={bugyImage}
+              style={styles.bugyImage}/>
+            <Text style={styles.bugyTypeface}>
+              {'Bugy Image Card'}
+            </Text>
+          </View>
+
+          <View style={styles.blankBox}>
+            <Image source={bugyTypeface}
+              style={styles.bugyImage}/>
+            <Text style={styles.bugyTypeface}>
+              {'Bugy Typeface Card'}
             </Text>
           </View>
 
           <View style={styles.blankBox} />
-          <View style={styles.blankBox} />
-          <View style={styles.blankBox} />
+
+          <View style={{height: 16+16+48}} />
+
         </ScrollView>
       
         {children}
