@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft } from 'phosphor-react-native';
-import { View, TextInput, Image, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Image, Text, TouchableOpacity, Keyboard } from 'react-native';
 import { theme } from '../../theme';
 import { feedbackTypes } from '../../utils/feedbackTypes';
 import { Button } from '../Button';
@@ -19,22 +19,32 @@ interface Props {
   feedbackType: FeedbackType
   onFeedbackReset: () => void;
   onFeedbackSent: () => void;
+  onFeedbackTakingScreenshot: (data: -1 | 0 | 1) => void;
 }
 
-export function Form({feedbackType, onFeedbackReset, onFeedbackSent}: Props) {
+export function Form({feedbackType, onFeedbackReset, onFeedbackSent, onFeedbackTakingScreenshot}: Props) {
   const [comment, setComment] = useState('');
   const [screenshot, setScreenshot] = useState<string | null>(null);
   const [isSendingFeedback, setIsSendingFeedback] = useState(false);
 
   const feedbackTypeInfo = feedbackTypes[feedbackType];
 
-  function handleScreenshot() {
-    captureScreen({
-      format: 'jpg',
-      quality: 0.8,
-    })
-      .then(uri => setScreenshot(uri))
-      .catch(error => console.log(error));
+  async function handleScreenshot() {
+    onFeedbackTakingScreenshot(0);
+    Keyboard.dismiss();
+    
+    setTimeout(() => {
+      captureScreen({
+        format: 'jpg',
+        quality: 0.7,
+      })
+        .then(uri => setScreenshot(uri))
+        .catch(error => console.log(error));
+    }, 250);
+      
+    setTimeout(() => {
+      onFeedbackTakingScreenshot(1);
+    }, 500);
   }
 
   function handleRemoveScreenshot() {

@@ -24,6 +24,7 @@ interface Props {
 function WidgetWrapper({children} : Props) {
   const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null);
   const [feedbackSent, setFeedbackSent] = useState(false);
+  const [feedbackSheetIndex, setFeedbackSheetIndex] = useState< -1 |0 | 1 >(-1);
   
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -65,11 +66,12 @@ function WidgetWrapper({children} : Props) {
       <BottomSheet
         ref={bottomSheetRef}
         snapPoints={[1, 280]}
+        index={feedbackSheetIndex}
         backgroundStyle={styles.modal}
         backdropComponent={renderBackdrop}
         handleIndicatorStyle={styles.indicator}
         enablePanDownToClose
-        style={{elevation: 24}}>
+        onClose={handleFeedbackReset}>
 
         {
           feedbackSent
@@ -82,7 +84,8 @@ function WidgetWrapper({children} : Props) {
                 <Form
                   feedbackType={feedbackType}
                   onFeedbackReset={handleFeedbackReset}
-                  onFeedbackSent={handleFeedbackSent}/>
+                  onFeedbackSent={handleFeedbackSent}
+                  onFeedbackTakingScreenshot={setFeedbackSheetIndex}/>
                 :
                 <Options
                   onFeedbackTypeChanged={setFeedbackType}/>
